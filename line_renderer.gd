@@ -116,7 +116,7 @@ func _ready() -> void:
 	geometry.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_DOUBLE_SIDED
 	var tmp: Variant = material
 	geometry.material_override = tmp
-	geometry.set_as_toplevel(true)
+	geometry.set_as_top_level(true)
 
 	add_child(geometry)
 	geometry.global_transform = Transform3D()
