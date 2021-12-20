@@ -53,12 +53,12 @@ class StubImmediateGeometry3D:
 			is_dirty = false
 
 var geometry: StubImmediateGeometry3D = null
-@export  var material : Material = null :
+@export var material : Material = null :
 	set = set_material
 
-@export  var thickness : float = 0.01
-@export  var start : Vector3 = Vector3()
-@export  var end : Vector3 = Vector3()
+@export var thickness : float = 0.01
+@export var start : Vector3 = Vector3()
+@export var end : Vector3 = Vector3()
 
 #
 func set_material(p_material: Material):
