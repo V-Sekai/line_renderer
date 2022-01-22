@@ -118,5 +118,5 @@ func _ready() -> void:
 	geometry.material_override = tmp
 	geometry.set_as_top_level(true)
 
-	add_child(geometry)
+	add_child(geometry, true)
 	geometry.global_transform = Transform3D()
