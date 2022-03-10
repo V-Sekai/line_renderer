@@ -77,7 +77,7 @@ func update(p_a: Vector3, p_b: Vector3):
 	if geometry:
 		geometry.clear()
 		
-		var camera = get_viewport().get_camera()
+		var camera = get_viewport().get_camera_3d()
 		if camera:
 			geometry.begin(Mesh.PRIMITIVE_TRIANGLES)
 			
