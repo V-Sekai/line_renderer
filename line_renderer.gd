@@ -1,6 +1,7 @@
 @tool
 extends Node3D
 
+
 # Remove when Godot 4.x implements support for ImmediateGometry3D
 class StubImmediateGeometry3D:
 	extends MeshInstance3D
@@ -52,13 +53,15 @@ class StubImmediateGeometry3D:
 			mesh.add_surface_from_arrays(Mesh.PRIMITIVE_LINES, arrays, [], {})
 			is_dirty = false
 
+
 var geometry: StubImmediateGeometry3D = null
-@export var material : Material = null :
+@export var material: Material = null:
 	set = set_material
 
-@export var thickness : float = 0.01
-@export var start : Vector3 = Vector3()
-@export var end : Vector3 = Vector3()
+@export var thickness: float = 0.01
+@export var start: Vector3 = Vector3()
+@export var end: Vector3 = Vector3()
+
 
 #
 func set_material(p_material: Material):
@@ -76,33 +79,27 @@ func add_vertex(p_point: Vector3):
 func update(p_a: Vector3, p_b: Vector3):
 	if geometry:
 		geometry.clear()
-		
+
 		var camera = get_viewport().get_camera_3d()
 		if camera:
 			geometry.begin(Mesh.PRIMITIVE_TRIANGLES)
-			
+
 			var ab = p_b - p_a
-			var transform_start: Vector3 = (
-				(camera.global_transform.origin - ((p_a + p_b) / 2)).cross(ab).normalized()
-				* thickness
-			)
-			var transform_end: Vector3 = (
-				(camera.global_transform.origin - ((p_a + p_b) / 2)).cross(ab).normalized()
-				* thickness
-			)
-			
+			var transform_start: Vector3 = (camera.global_transform.origin - ((p_a + p_b) / 2)).cross(ab).normalized() * thickness
+			var transform_end: Vector3 = (camera.global_transform.origin - ((p_a + p_b) / 2)).cross(ab).normalized() * thickness
+
 			var a_upper: Vector3 = p_a + transform_start
 			var b_upper: Vector3 = p_b + transform_end
 			var a_lower: Vector3 = p_a - transform_start
 			var b_lower: Vector3 = p_b - transform_end
-			
+
 			add_vertex(a_upper)
 			add_vertex(b_upper)
 			add_vertex(a_lower)
 			add_vertex(b_upper)
 			add_vertex(b_lower)
 			add_vertex(a_lower)
-			
+
 			geometry.end()
 		geometry._commit_arraymesh()
 
